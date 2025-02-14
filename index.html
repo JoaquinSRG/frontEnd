@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Registro</title>
+</head>
+
+<body>
+   <fieldset>
+      <legend>Registro</legend>
+      <form action="">
+         <label for="nombre">Nombre:</label>
+         <input type="text" name="nombre" id="nombre"><br><br>
+
+         <label for="email">Email:</label>
+         <input type="email" name="email" id="email"><br><br>
+
+         <label for="telefono">Telefono:</label>
+         <input type="tel" name="telefono" id="telefono"><br><br>
+
+         <label for="opiniones">Opinión:</label>
+         <textarea name="opiniones" id="opiniones"></textarea><br><br>
+
+         <label for="pais">País:</label>
+         <select name="pais" id="pais">
+            <option value="">Selecciona un pais</option>
+            <option value="mexico">México</option>
+            <option value="usa">Estados Unidos</option>
+            <option value="canada">Canadá</option>
+         </select><br><br>
+
+         <label>Intereses:</label><br>
+         <label for="interes1">
+            <input type="checkbox" name="intereses" value="deportes" id="interes1"> Deportes
+         </label><br>
+         <label for="interes2">
+            <input type="checkbox" name="intereses" value="musica" id="interes2"> Música
+         </label><br>
+         <label for="interes3">
+            <input type="checkbox" name="intereses" value="tecnologia" id="interes3"> Tecnología
+         </label><br>
+         <label for="interes4">
+            <input type="checkbox" name="intereses" value="cine" id="interes4"> Cine
+         </label><br>
+         <label for="interes5">
+            <input type="checkbox" name="intereses" value="viajes" id="interes5"> Viajes
+         </label><br><br>
+
+         <button type="button" id="enviar">Enviar</button>
+      </form>
+   </fieldset>
+   <script>
+      // Obtener referencias al campo de entrada y al botón
+      let nombre = document.getElementById("nombre");
+      let email = document.getElementById("email");
+      let enviar = document.getElementById("enviar");
+      let telefono = document.getElementById("telefono");
+      let opiniones = document.getElementById("opiniones");
+      let pais = document.getElementById("pais");
+      let intereses = document.querySelectorAll("input[name='intereses']");
+
+      // Función para validar el nombre
+      function validarNombre() {
+         if (nombre.value.length >= 3) { // Validar que tenga al menos 3 caracteres
+            nombre.style.backgroundColor = "green";
+         } else {
+            nombre.style.backgroundColor = "red";
+         }
+      }
+      function validarEmail() {
+         // Expresión regular simplificada: debe tener un @ y terminar con .com
+         let regex = /@.*\.com$/;
+         if (regex.test(email.value)) {
+            email.style.backgroundColor = "green";
+         } else {
+            email.style.backgroundColor = "red";
+         }
+      }
+      function validarTelefono() {
+         let regex = /^\d{10}$/;
+         if (regex.test(telefono.value)) {
+            telefono.style.backgroundColor = "green";
+         } else {
+            telefono.style.backgroundColor = "red";
+         }
+      }
+      function validarOpiniones() {
+         if (opiniones.value.length >= 10) { // Validar que tenga al menos 10 caracteres
+            opiniones.style.backgroundColor = "green";
+         } else {
+            opiniones.style.backgroundColor = "red";
+         }
+      }
+      function validarPais() {
+         if (pais.value !== "") { // Validar que se haya seleccionado un país
+            pais.style.backgroundColor = "green";
+         } else {
+            pais.style.backgroundColor = "red";
+         }
+      }
+      function validarIntereses() {
+         let seleccionados = Array.from(intereses).filter(checkbox => checkbox.checked);
+         if (seleccionados.length > 0) {
+            // Si al menos uno está seleccionado, cambia a verde
+            intereses.forEach(checkbox => {
+               checkbox.parentNode.style.backgroundColor = "green";
+            });
+         } else {
+            // Si ninguno está seleccionado, cambia a rojo
+            intereses.forEach(checkbox => {
+               checkbox.parentNode.style.backgroundColor = "red";
+            });
+         }
+      }
+      // Agregar el evento click al botón
+      enviar.addEventListener("click", function () {
+         validarNombre();
+         validarEmail();
+         validarTelefono();
+         validarOpiniones();
+         validarPais();
+         validarIntereses();
+      });
+   </script>
+</body>
+
+</html>
