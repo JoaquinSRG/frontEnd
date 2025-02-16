@@ -11,7 +11,7 @@
 <body>
    <fieldset>
       <legend>Registro</legend>
-      <form action="">
+      <form action="" id="miFormulario">
          <label for="nombre">Nombre:</label>
          <input type="text" name="nombre" id="nombre"><br><br>
 
@@ -52,9 +52,7 @@
          <button type="button" id="enviar">Enviar</button>
       </form>
    </fieldset>
-   <button type="button" id="borrarTodo">Borrar Todo</button>
-   <h2 id="registros">Registros</h2>
-   <ul id="listaRegistros"></ul>
+   <div id="contenedorRegistros"></div>
    <script src="script.js" defer></script>
 </body>
 
